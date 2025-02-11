@@ -1,0 +1,25 @@
+<div class= "container ">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <% if @user.errors.any? %>
+      <%= @user.errors.count %>error prohibited this book from being saved:
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <h2>User info</h2>
+    <%= form_with model: @user, local: true do |f| %>
+      <%= f.label :name, "Name" %>
+      <%= f.text_field :name ,class: "form-control" %>
+
+      <%= f.file_field :profile_image, accept: "image/*", class: "w-100" %>
+      
+      <%= f.label :introduction, "Introduction" %>
+      <%= f.text_field :introduction ,class: "form-control" %>
+
+      <%= f.submit 'Update User', class: "btn btn-secondary" %>
+      
+    <% end %>
+  </div>
+</div>

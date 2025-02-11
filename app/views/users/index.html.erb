@@ -1,0 +1,65 @@
+<div class= "container px-5 px-sm-0">
+  <div class= "row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <%=image_tag current_user.get_profile_image(100,100)%>
+      <table class ="table">
+        <tbody>
+          <tr></tr>
+          <tr>
+            <th>name</th>
+            <th><%= current_user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= current_user.introduction %></th>
+          </tr>
+        </tbody>
+      </table>
+      <div class= "row">
+        <%= link_to edit_user_path(current_user), class: "btn btn-lg btn-block custom-btn mt-2" do %>
+          <i class="fa-solid fa-user-gear"></i>
+        <% end %>
+      </div>
+
+      <%= form_with model: @new_book, url: books_path, method: :post do |f| %>
+        <h2>New book</h2>
+        <h5>Title</h5>
+        <%= f.text_field :title %>
+
+        <h5>opinion</h5>
+        <%= f.text_area :body %>
+
+        <br>
+        <%= f.submit 'Create Book',class: "btn btn-success"  %>
+      <% end %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Users</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+              
+              <th>image</th>
+              <th>name</th>
+              <th></th>
+              <th></th>
+              <th colspan="3"></th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @user.each do |user| %>
+            <tr>
+              <td>
+                <%=image_tag user.get_profile_image(80,80)%><br>
+              </td>
+              <td><%= user.name %></td>
+              <td><%= link_to "Show" , user_path(user)%></td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="col-md-3">
+      <h2>User info</h2>
+        <%=image_tag user.get_profile_image(100,100)%>
+        <table class ="table">
+          <tbody>
+            <tr></tr>
+            <tr>
+              <th>name</th>
+              <th><%= user.name %></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th><%= user.introduction %></th>
+            </tr>
+          </tbody>
+        </table>
+        <div class= "row">
+          <%= link_to edit_user_path(user), class: "btn btn-lg btn-block custom-btn mt-2" do %>
+            <i class="fa-solid fa-user-gear"></i>
+          <% end %>
+        </div>
+        <% if @new_book.errors.any? %>
+          <%= @new_book.errors.count %>error prohibited this book from being saved:
+          <ul>
+            <% @new_book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      <%= form_with model: new_book, url: books_path, method: :post do |f| %>
+        <h2>New book</h2>
+        <h5>Title</h5>
+        <%= f.text_field :title %>
+
+        <h5>opinion</h5>
+        <%= f.text_area :body %>
+
+        <br>
+        <%= f.submit 'Create Book' ,class: "btn btn-success" %>
+      <% end %>
+    </div>

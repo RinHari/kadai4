@@ -1,0 +1,10 @@
+.custom-btn {
+  background-color: white; 
+  color: gray; /* 文字色 */
+  border-color: gray; /* 枠線なし */
+}
+
+.custom-btn:hover {
+  background-color: gray; /* ホバー時の色 */
+  color:white;
+}
